@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  mailer:
+    build:
+      context: ./mailer
+    restart: "no"
+    env_file:
+      - ./.env
+      - ./mailer/.${NODE_ENV}.env
+    networks:
+      - backend
+    volumes:
+      - ./mailer/:/var/www/mailer
+      - /var/www/mailer/node_modules
+    depends_on:
+      database:
+        condition: service_healthy
+    links:
+      - database
+      - rabbitmq
