@@ -8,6 +8,7 @@ import * as _ from 'lodash';
 
 enum EmailTemplates {
   FORGOT_PASSWORD = 'forgot-password',
+  POST_UPDATED = 'post-updated',
 }
 
 @Processor('email-sender')
