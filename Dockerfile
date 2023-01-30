@@ -1,7 +1,19 @@
-FROM node:14-alpine
-RUN apk add --no-cache --virtual .build-deps alpine-sdk python3
-RUN mkdir -p /var/www/mailer
-WORKDIR /var/www/mailer
-ADD . /var/www/mailer
+FROM node:14 AS builder
+
+WORKDIR /app
+
+COPY package*.json ./
+
 RUN npm install
-CMD npm start
+
+COPY . .
+
+# RUN npm run build
+
+# FROM node:14
+
+# COPY --from=builder /app/node_modules ./node_modules
+# COPY --from=builder /app/package*.json ./
+# COPY --from=builder /app/dist ./dist
+
+CMD [ "npm", "run", "dev" ]
