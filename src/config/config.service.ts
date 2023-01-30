@@ -1,16 +1,27 @@
+import { Injectable } from '@nestjs/common';
 import { config } from 'dotenv';
 config();
-import { Injectable } from '@nestjs/common';
+
+interface Config {
+  rb_url: string;
+  auth_queue: string;
+  mailer_queue: string;
+  redis_host: string;
+  redis_port: string;
+  aws: {
+    accessKeyId: string;
+    secretAccessKey: string;
+    region: string;
+  };
+  sourceEmail: string;
+}
 
 @Injectable()
 export class ConfigService {
-  private config: { [key: string]: any } = {};
+  private config = {} as Config;
   constructor() {
     this.config.rb_url = process.env.RABBITMQ_URL;
-    this.config.token_queue = process.env.RABBITMQ_TOKEN_QUEUE;
-    this.config.main_queue = process.env.RABBITMQ_MAIN_QUEUE;
-    this.config.user_queue = process.env.RABBITMQ_USER_QUEUE;
-    this.config.post_queue = process.env.RABBITMQ_POST_QUEUE;
+    this.config.auth_queue = process.env.RABBITMQ_AUTH_QUEUE;
     this.config.mailer_queue = process.env.RABBITMQ_MAILER_QUEUE;
     this.config.redis_host = process.env.REDIS_HOST;
     this.config.redis_port = process.env.REDIS_PORT;
@@ -22,7 +33,7 @@ export class ConfigService {
     this.config.sourceEmail = process.env.SOURCE_EMAIL;
   }
 
-  public get(key: string): any {
+  public get(key: keyof Config): any {
     return this.config[key];
   }
 }

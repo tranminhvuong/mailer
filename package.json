@@ -1,23 +1,21 @@
 {
   "name": "mailer",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
     "prebuild": "rimraf dist",
-    "postinstall": "npx typesync",
+    "postinstall": "npm run gen",
     "build": "nest build",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start --watch",
+    "dev": "nest start --watch",
     "debug": "nest start --debug --watch",
-    "prod": "node dist/main",
-    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "gen": "prisma generate",
+    "start": "node dist/main",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
-    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "prepare": "husky install",
     "pre-commit": "lint-staged"
@@ -76,7 +74,7 @@
       "json",
       "ts"
     ],
-    "rootDir": "src",
+    "rootDir": "./",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
@@ -85,13 +83,20 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "reporters": [
+      "default",
+      [
+        "jest-junit",
+        {
+          "outputDirectory": ".",
+          "outputName": "junit.xml"
+        }
+      ]
+    ]
   },
   "lint-staged": {
-    "src/**/*.{ts,js}": [
-      "npm run lint",
-      "npm run format",
-      "git add"
-    ]
+    "*.{js,ts}": "npm run lint:fix",
+    "*.{ts,js,json,md}": "prettier --write"
   }
 }
