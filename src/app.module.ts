@@ -4,10 +4,23 @@ import { AppService } from './app.service';
 import { ConfigModule } from './config/config.module';
 import { BullModule } from '@nestjs/bull';
 import { ConfigService } from './config/config.service';
-import { TaskProcessor } from './tasks/task.processor';
+import { TaskProcessor } from './task.processor';
+import { LoggerModule } from 'nestjs-pino';
 
 @Module({
   imports: [
+    LoggerModule.forRoot({
+      ...(process.env.NODE_ENV === 'development' && {
+        pinoHttp: {
+          transport: {
+            target: 'pino-pretty',
+            options: {
+              singleLine: true,
+            },
+          },
+        },
+      }),
+    }),
     ConfigModule,
     BullModule.forRootAsync({
       imports: [ConfigModule],
