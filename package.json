@@ -5,11 +5,9 @@
   "license": "UNLICENSED",
   "scripts": {
     "prebuild": "rimraf dist",
-    "postinstall": "npm run gen",
     "build": "nest build",
     "dev": "nest start --watch",
     "debug": "nest start --debug --watch",
-    "gen": "prisma generate",
     "start": "node dist/main",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
@@ -32,10 +30,6 @@
     "bull": "^4.4.0",
     "dotenv": "^10.0.0",
     "lodash": "^4.17.21",
-    "nestjs-pino": "^3.1.2",
-    "nodemailer": "^6.6.3",
-    "pino-http": "^8.3.2",
-    "pino-pretty": "^9.1.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"
