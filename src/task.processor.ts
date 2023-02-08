@@ -26,7 +26,7 @@ export class TaskProcessor {
   async senderHanlder(job: {
     data: { template: EmailTemplates; payload: any };
   }) {
-    console.log(job.data);
+    this.logger.log(job.data);
     const { template, payload } = job.data;
     const templatePath = join(
       __dirname,

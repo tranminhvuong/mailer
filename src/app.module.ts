@@ -15,6 +15,7 @@ import { TaskProcessor } from './task.processor';
         redis: {
           host: configService.get('redis_host'),
           port: configService.get('redis_port'),
+          password: configService.get('redis_password'),
         },
       }),
       inject: [ConfigService],
