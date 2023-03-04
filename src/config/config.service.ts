@@ -4,7 +4,6 @@ config();
 
 interface Config {
   rb_url: string;
-  auth_queue: string;
   mailer_queue: string;
   redis_host: string;
   redis_port: string;
@@ -22,7 +21,6 @@ export class ConfigService {
   private config = {} as Config;
   constructor() {
     this.config.rb_url = process.env.RABBITMQ_URL;
-    this.config.auth_queue = process.env.RABBITMQ_AUTH_QUEUE;
     this.config.mailer_queue = process.env.RABBITMQ_MAILER_QUEUE;
     this.config.redis_host = process.env.REDIS_HOST;
     this.config.redis_port = process.env.REDIS_PORT;
