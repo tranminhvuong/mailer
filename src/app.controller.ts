@@ -7,7 +7,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @EventPattern('send_email')
-  public createToken(@Payload() data): void {
+  public sendEmailController(@Payload() data): void {
     this.appService.sendEmail(data);
   }
 }

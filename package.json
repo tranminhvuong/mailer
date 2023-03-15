@@ -19,7 +19,6 @@
     "pre-commit": "lint-staged"
   },
   "dependencies": {
-    "@nestjs/bull": "^0.4.2",
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/microservices": "^8.0.6",
@@ -27,7 +26,6 @@
     "amqp-connection-manager": "^3.6.0",
     "amqplib": "^0.8.0",
     "aws-sdk": "^2.1066.0",
-    "bull": "^4.4.0",
     "dotenv": "^10.0.0",
     "lodash": "^4.17.21",
     "reflect-metadata": "^0.1.13",
@@ -39,7 +37,6 @@
     "@nestjs/schematics": "^8.0.0",
     "@nestjs/testing": "^8.0.0",
     "@types/amqplib": "^0.8.2",
-    "@types/bull": "^3.15.7",
     "@types/eslint": "^8.4.1",
     "@types/eslint-plugin-prettier": "^3.1.0",
     "@types/jest": "^27.0.1",
